@@ -1,10 +1,18 @@
-import './App.css'
+import { Main } from './layout/Main'
+import { Aside } from './layout/Aside'
+import { CharacterContextProvider } from './contexts/CharacterContext'
+import { SearchContextProvider } from './contexts/SearchContext'
 
 function App() {
   return (
-    <div className="App">
-      <h1>Esses são os dados:</h1>
-    </div>
+    <CharacterContextProvider>
+      <div className="d-flex vh-100">
+        <Aside />
+        <SearchContextProvider>
+          <Main />
+        </SearchContextProvider>
+      </div>
+    </CharacterContextProvider>
   )
 }
 

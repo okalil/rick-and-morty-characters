@@ -1,5 +1,7 @@
 # Rick & Morty Characters
 
+Busque personagens de Rick & Morty e adicione aos seus favoritos!
+
 ## Features
 
 - [x] Buscar personagem pelo nome.

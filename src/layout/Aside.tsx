@@ -27,7 +27,7 @@ export const Aside: React.FC = () => {
             return <FavoriteCard key={index} index={index} />
           })
         ) : (
-          <strong className="text-white h4">
+          <strong className="text-white h4 text-center">
             Você não tem nenhum personagem favorito.
           </strong>
         )}

@@ -1,17 +1,19 @@
-import { Main } from './layout/Main'
-import { Aside } from './layout/Aside'
+import Router from './contexts/RouterContext'
 import { CharacterContextProvider } from './contexts/CharacterContext'
 import { SearchContextProvider } from './contexts/SearchContext'
+
+import Header from './components/Header'
+import Routes from './routes'
 
 function App() {
   return (
     <CharacterContextProvider>
-      <div className="d-flex vh-100">
-        <Aside />
-        <SearchContextProvider>
-          <Main />
-        </SearchContextProvider>
-      </div>
+      <SearchContextProvider>
+        <Router>
+          <Header />
+          <Routes />
+        </Router>
+      </SearchContextProvider>
     </CharacterContextProvider>
   )
 }

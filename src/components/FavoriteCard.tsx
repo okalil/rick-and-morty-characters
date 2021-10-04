@@ -1,8 +1,5 @@
 import React from 'react'
-
 import remove from '../assets/bin.png'
-import { Card } from 'react-bootstrap'
-
 import { useCharacters } from '../hooks/useCharacters'
 
 interface CharacterCardProps {
@@ -25,15 +22,15 @@ export const FavoriteCard: React.FC<CharacterCardProps> = ({
   const cardStyle = { width: 'min(90%, 500px)', height: '10rem' }
 
   return (
-    <Card className="flex-row mx-auto rounded mt-3 " style={cardStyle}>
+    <section className="flex-row mx-auto rounded mt-3 " style={cardStyle}>
       {character && (
         <>
           <img src={character.image} alt="Imagem do personagem" />
-          <Card.Body>
-            <Card.Title> {character.name}</Card.Title>
-            <Card.Subtitle>Gênero: </Card.Subtitle>
+          <div>
+            <h2> {character.name}</h2>
+            <h3>Gênero: </h3>
             <span>{character.gender}</span>
-            <Card.Subtitle>Espécie: </Card.Subtitle>
+            <h3>Espécie: </h3>
             <span>{character.species}</span>
             <span
               onClick={deleteFavorite}
@@ -46,9 +43,9 @@ export const FavoriteCard: React.FC<CharacterCardProps> = ({
             >
               <img src={remove} alt="Deletar" width="20" />
             </span>
-          </Card.Body>
+          </div>
         </>
       )}
-    </Card>
+    </section>
   )
 }

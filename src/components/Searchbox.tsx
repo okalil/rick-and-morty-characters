@@ -1,5 +1,4 @@
 import React, { FormEvent, useState } from 'react'
-import { Button, Form, InputGroup } from 'react-bootstrap'
 
 import { useSearch } from '../hooks/useSearchContext'
 import { api } from '../services/api'
@@ -45,21 +44,20 @@ export const Searchbox: React.FC = () => {
   const formStyle = { width: 'min(60%, 400px)' }
 
   return (
-    <Form
+    <form
       onSubmit={searchCharacter}
       className="mx-auto mt-5 mb-3"
       style={formStyle}
-      data-testid='form-search'
     >
-      <InputGroup>
-        <Form.Control
+      <div>
+        <input
           type="text"
           placeholder="Buscar personagem..."
           value={name}
           onChange={event => setName(event.target.value)}
         />
-        <Button type="submit">Buscar</Button>
-      </InputGroup>
-    </Form>
+        <button type="submit">Buscar</button>
+      </div>
+    </form>
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import star from '../assets/star.svg'
-import { Card } from 'react-bootstrap'
 
 import { useCharacters } from '../hooks/useCharacters'
 import { useSearch } from '../hooks/useSearchContext'
@@ -20,16 +19,16 @@ export const SearchedCard: React.FC = () => {
   const cardStyle = { width: 'min(90%, 500px)', height: '10rem' }
 
   return (
-    <Card className="flex-row mx-auto rounded " style={cardStyle}>
+    <section className="flex-row mx-auto rounded " style={cardStyle}>
       {searchedCharacter && (
         <>
           <img src={searchedCharacter.image} alt="Imagem do personagem" />
-          <Card.Body>
-            <Card.Title>{searchedCharacter.name}</Card.Title>
+          <div>
+            <h2>{searchedCharacter.name}</h2>
 
-            <Card.Subtitle>Gênero: </Card.Subtitle>
+            <h3>Gênero: </h3>
             <span>{searchedCharacter.gender}</span>
-            <Card.Subtitle>Espécie: </Card.Subtitle>
+            <h3>Espécie: </h3>
             <span>{searchedCharacter.species}</span>
 
             <span
@@ -43,9 +42,9 @@ export const SearchedCard: React.FC = () => {
             >
               <img src={star} alt="Favoritar" width="25" />
             </span>
-          </Card.Body>
+          </div>
         </>
       )}
-    </Card>
+    </section>
   )
 }

@@ -11,11 +11,17 @@ Busque personagens de Rick & Morty e adicione aos seus favoritos!
 - [x] Salvar personagem na lista de favoritos.
 - [x] Excluir perdonagem da lista de favoritos.
 
+## Tecnologias utilizadas
+
+- [Axios](https://axios-http.com/), cliente HTTP
+- [React](https://reactjs.org/), biblioteca JS para construir UIs
+- [Tailwind CSS](https://tailwindcss.com/), framework CSS utility-first
+
 ## Execução
 
 - Clone: `git clone https://github.com/okalil/rick-and-morty-characters.git`
 - Acesse o diretório: `cd rick-and-morty-characters`
-- Instale as dpendências: `yarn`
+- Instale as dependências: `yarn`
 - Execute em desenvolvimento: `yarn start`
 
 ## Scripts disponíveis

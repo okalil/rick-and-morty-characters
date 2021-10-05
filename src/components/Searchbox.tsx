@@ -1,15 +1,17 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent } from 'react'
 
 import { useSearch } from '../hooks/useSearchContext'
 import { api } from '../services/api'
 
 export const Searchbox: React.FC = () => {
   const { setLoading, setError, setSearchedCharacter } = useSearch()
-  const [name, setName] = useState('')
 
   const searchCharacter = async (event: FormEvent) => {
     event.preventDefault()
     setLoading(true)
+
+    const formData = new FormData(event.target as HTMLFormElement)
+    const query = formData.get('field') as string
 
     try {
       const { data } = await api.get('/character')
@@ -23,8 +25,8 @@ export const Searchbox: React.FC = () => {
       const [result] = results.filter(item => {
         const lower = item.name.toLowerCase()
         return (
-          lower === name.toLowerCase() ||
-          lower.split(' ')[0] === name.toLowerCase()
+          lower === query?.toLowerCase() ||
+          lower.split(' ')[0] === query?.toLowerCase()
         )
       })
 
@@ -41,23 +43,23 @@ export const Searchbox: React.FC = () => {
     setLoading(false)
   }
 
-  const formStyle = { width: 'min(60%, 400px)' }
-
   return (
     <form
       onSubmit={searchCharacter}
-      className="mx-auto mt-5 mb-3"
-      style={formStyle}
+      className="flex rounded max-w-screen-sm mx-auto"
     >
-      <div>
-        <input
-          type="text"
-          placeholder="Buscar personagem..."
-          value={name}
-          onChange={event => setName(event.target.value)}
-        />
-        <button type="submit">Buscar</button>
-      </div>
+      <input
+        type="text"
+        placeholder="Buscar personagem..."
+        name="field"
+        className="rounded-l p-4 flex-auto border border-green-500 border-solid outline-none"
+      />
+      <button
+        type="submit"
+        className="text-white font-medium rounded-r cursor-pointer w-1/6 bg-green-brand"
+      >
+        Buscar
+      </button>
     </form>
   )
 }

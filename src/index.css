@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nav-link::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  @apply bg-green-brand;
+
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+
+  transition: width 0.2s;
+}
+.nav-link:hover::after {
+  width: 100%;
+}

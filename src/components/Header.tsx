@@ -1,5 +1,5 @@
 import Link from './Link'
-
+import logo from '../assets/rick-and-morty.png'
 const navigation = [
   { key: 'Home', href: '/' },
   { key: 'Favoritos', href: '/favorites' }
@@ -7,13 +7,21 @@ const navigation = [
 
 export default function Header() {
   return (
-    <header className="flex justify-between px-2 py-2 ">
-      <img src="" alt="Rick n Morty" />
-      <nav className="flex">
+    <header
+      className="flex justify-between items-center px-2 mx-auto h-20"
+      style={{ width: 'min(100vw, 1104px)' }}
+    >
+      <img src={logo} alt="Rick n Morty" className="max-h-full" />
+      <nav className="flex py-2">
         {navigation.map(({ href, key }) => (
-          <Link className="mx-3 text-white font-medium" {...{ href, key }}>
-            {key.toUpperCase()}
-          </Link>
+          <div className="relative mx-3">
+            <Link
+              className="text-white font-medium nav-link"
+              {...{ href, key }}
+            >
+              {key.toUpperCase()}
+            </Link>
+          </div>
         ))}
       </nav>
     </header>

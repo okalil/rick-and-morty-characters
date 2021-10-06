@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function usePersistedState<T>(
   key: string
@@ -9,7 +9,10 @@ export default function usePersistedState<T>(
   function updateArray(value: T[]) {
     setArray(value)
     localStorage.setItem(key, JSON.stringify(value))
+    console.log(value, array)
   }
+
+  useEffect(() => console.log('updated', array), [array])
 
   return [array, updateArray]
 }

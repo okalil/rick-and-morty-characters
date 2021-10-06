@@ -1,26 +1,23 @@
 import React from 'react'
 import remove from '../assets/bin.png'
-import useFavoriteCharacters from '../hooks/useFavoriteCharacters'
 
-interface CharacterCardProps {
-  index: number
+interface Character {
+  id: number
+  name: string
+  gender: string
+  species: string
+  image: string
 }
 
-export const FavoriteCard: React.FC<CharacterCardProps> = ({
-  index
-}: CharacterCardProps) => {
-  const [characters, setCharacters] = useFavoriteCharacters()
+interface Props {
+  character: Character
+  deleteFavorite: (character: Character) => void
+}
 
-  if (!characters[index]) return null
-
-  const character = characters[index]
-
-  const deleteFavorite = () => {
-    const index = characters.indexOf(character)
-    const [removed] = characters.splice(index, index + 1)
-    setCharacters(characters.filter(item => item !== removed))
-  }
-
+export const FavoriteCard: React.FC<Props> = ({
+  character,
+  deleteFavorite
+}) => {
   const cardStyle = { width: 'min(90%, 500px)', height: '10rem' }
 
   return (
@@ -35,7 +32,7 @@ export const FavoriteCard: React.FC<CharacterCardProps> = ({
             <h3>Espécie: </h3>
             <span>{character.species}</span>
             <span
-              onClick={deleteFavorite}
+              onClick={() => deleteFavorite(character)}
               style={{
                 position: 'absolute',
                 right: '0.25rem',

@@ -7,18 +7,18 @@ import {
 } from 'react'
 
 type RouterContextType = {
-  path: string
-  setPath: Dispatch<SetStateAction<string>>
+  path: string | undefined
+  setPath: Dispatch<SetStateAction<string | undefined>>
 }
 
 export const RouterContext = createContext({} as RouterContextType)
 
 const Router: React.FC = ({ children }) => {
-  const [path, setPath] = useState(window.location.pathname)
-
-  window.onpopstate = () => setPath(window.location.pathname)
+  const [path, setPath] = useState(window.location.pathname || undefined)
 
   const value = useMemo(() => ({ path, setPath }), [path, setPath])
+
+  window.onpopstate = () => setPath(window.location.pathname)
 
   return (
     <RouterContext.Provider {...{ value }}>{children}</RouterContext.Provider>

@@ -1,12 +1,5 @@
 import usePersistedState from './usePersistedState'
-
-interface Character {
-  id: number
-  name: string
-  gender: string
-  species: string
-  image: string
-}
+import { Character } from '../types'
 
 export default function useFavoriteCharacters(): [
   Character[],

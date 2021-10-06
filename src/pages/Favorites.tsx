@@ -1,13 +1,6 @@
 import { FavoriteCard } from '../components/FavoriteCard'
 import useFavoriteCharacters from '../hooks/useFavoriteCharacters'
-
-interface Character {
-  id: number
-  name: string
-  gender: string
-  species: string
-  image: string
-}
+import { Character } from '../types'
 
 export default function Favorites() {
   const [characters, setCharacters] = useFavoriteCharacters()

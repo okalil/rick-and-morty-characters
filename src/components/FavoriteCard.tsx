@@ -1,13 +1,6 @@
 import React from 'react'
 import remove from '../assets/bin.png'
-
-interface Character {
-  id: number
-  name: string
-  gender: string
-  species: string
-  image: string
-}
+import { Character } from '../types'
 
 interface Props {
   character: Character

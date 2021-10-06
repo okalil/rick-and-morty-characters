@@ -1,3 +1,13 @@
+import { FavoriteCard } from '../components/FavoriteCard'
+import useFavoriteCharacters from '../hooks/useFavoriteCharacters'
+
 export default function Favorites() {
-  return <main>Favoritos</main>
+  const [characters] = useFavoriteCharacters()
+  return (
+    <main>
+      {characters.map(({ id }, i) => (
+        <FavoriteCard key={id} index={i} />
+      ))}
+    </main>
+  )
 }

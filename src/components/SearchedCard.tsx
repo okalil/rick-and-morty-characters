@@ -1,18 +1,18 @@
 import React from 'react'
-
 import star from '../assets/star.svg'
 
-import { useCharacters } from '../hooks/useCharacters'
 import { useSearch } from '../hooks/useSearchContext'
+import useFavoriteCharacters from '../hooks/useFavoriteCharacters'
 
 export const SearchedCard: React.FC = () => {
-  const { searchedCharacter, setFavorited } = useSearch()
-  const { setCharacters, characters } = useCharacters()
+  const { searchedCharacter } = useSearch()
+  const [characters, setCharacters] = useFavoriteCharacters()
+
+  if (!searchedCharacter) return null
 
   const addToFavorites = () => {
-    if (searchedCharacter && !characters.includes(searchedCharacter)) {
+    if (!characters.find(e => searchedCharacter.id === e.id)) {
       setCharacters([...characters, searchedCharacter])
-      setFavorited(true)
     }
   }
 

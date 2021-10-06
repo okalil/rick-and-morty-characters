@@ -14,11 +14,8 @@ export default function Header() {
       <img src={logo} alt="Rick n Morty" className="max-h-full" />
       <nav className="flex py-2">
         {navigation.map(({ href, key }) => (
-          <div className="relative mx-3">
-            <Link
-              className="text-white font-medium nav-link"
-              {...{ href, key }}
-            >
+          <div className="relative mx-3" key={key}>
+            <Link className="text-white font-medium nav-link" {...{ href }}>
               {key.toUpperCase()}
             </Link>
           </div>

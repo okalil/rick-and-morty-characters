@@ -18,7 +18,7 @@ export default function Favorites() {
   return (
     <main>
       {characters.map(character => (
-        <FavoriteCard {...{ character, deleteFavorite }} />
+        <FavoriteCard {...{ character, deleteFavorite, key: character.id }} />
       ))}
     </main>
   )

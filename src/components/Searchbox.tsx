@@ -2,45 +2,46 @@ import React, { FormEvent } from 'react'
 
 import { useSearch } from '../hooks/useSearchContext'
 import { api } from '../services/api'
+import { Character } from '../types'
 
 export const Searchbox: React.FC = () => {
-  const { setLoading, setError, setSearchedCharacter } = useSearch()
+  const { setSearch } = useSearch()
 
   const searchCharacter = async (event: FormEvent) => {
     event.preventDefault()
-    setLoading(true)
+    setSearch(s => ({ ...s, loading: true }))
 
     const formData = new FormData(event.target as HTMLFormElement)
     const query = formData.get('field') as string
 
     try {
       const { data } = await api.get('/character')
-      const results: {
-        id: number
-        name: string
-        gender: string
-        species: string
-        image: string
-      }[] = data.results
-      const [result] = results.filter(item => {
-        const lower = item.name.toLowerCase()
-        return (
-          lower === query?.toLowerCase() ||
-          lower.split(' ')[0] === query?.toLowerCase()
+      const results: Character[] = data.results
+
+      let r = results.filter(({ name }) =>
+        name.toLowerCase().split(' ')[0].includes(query?.toLowerCase())
+      )
+
+      if (!r[0])
+        r = results.filter(({ name }) =>
+          name.toLowerCase().includes(query?.toLowerCase())
         )
-      })
+
+      const [result] = r
 
       if (result) {
-        setSearchedCharacter(result)
-        setError('')
+        setSearch({ data: result, loading: false, error: null })
       } else {
-        setError('O personagem buscado não existe.')
+        setSearch(s => ({
+          ...s,
+          error: 'O personagem buscado não existe.',
+          loading: false
+        }))
       }
     } catch (err) {
       console.error(err)
+      setSearch(s => ({ ...s, error: 'Erro no servidor' }))
     }
-
-    setLoading(false)
   }
 
   return (

@@ -14,6 +14,15 @@ module.exports = {
       },
       fontFamily: {
         body: ['Poppins', 'Verdana', 'sans-serif']
+      },
+      animation: {
+        wave: 'wave calc(1.3s * 0.75) linear infinite'
+      },
+      keyframes: {
+        wave: {
+          '0%, 60%, 100%': { transform: 'initial' },
+          '30%': { transform: 'translateY(-15px)' }
+        }
       }
     }
   },

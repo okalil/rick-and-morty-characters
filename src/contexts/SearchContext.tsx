@@ -9,42 +9,31 @@ type Character = {
   image: string
 }
 
-type SearchContextType = {
-  error: string
-  setError: Dispatch<SetStateAction<string>>
+type Search = {
+  data: Character | null
   loading: boolean
-  setLoading: Dispatch<SetStateAction<boolean>>
-  searchedCharacter: Character | undefined
-  setSearchedCharacter: Dispatch<SetStateAction<Character | undefined>>
-  favorited: boolean
-  setFavorited: Dispatch<SetStateAction<boolean>>
+  error: string | null
+}
+
+type SearchContextType = {
+  search: Search
+  setSearch: Dispatch<SetStateAction<Search>>
 }
 
 type SearchContextProps = {
   children: ReactNode
 }
 
-export function SearchContextProvider(props: SearchContextProps) {
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [favorited, setFavorited] = useState(false)
-  const [searchedCharacter, setSearchedCharacter] = useState<Character>()
-
-  return (
-    <SearchContext.Provider
-      value={{
-        error,
-        setError,
-        loading,
-        setLoading,
-        searchedCharacter,
-        setSearchedCharacter,
-        favorited,
-        setFavorited
-      }}
-    >
-      {props.children}
-    </SearchContext.Provider>
-  )
-}
 export const SearchContext = createContext({} as SearchContextType)
+
+export function SearchContextProvider({ children }: SearchContextProps) {
+  const [search, setSearch] = useState<Search>({
+    data: null,
+    loading: false,
+    error: null
+  })
+
+  const value = { search, setSearch }
+
+  return <SearchContext.Provider {...{ value, children }} />
+}
